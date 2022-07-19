@@ -10,8 +10,9 @@ namespace VendorAndOrderTracker.Tests
   {
     public void Dispose()
     {
-      Order.ClearAll();
+      
     }
+    
     [TestMethod]
     public void OrderConstructor_CreatesAnOrderObject_Order()
     {
@@ -22,7 +23,17 @@ namespace VendorAndOrderTracker.Tests
       Order newOrder = new Order(title, description, price, date);
       Assert.AreEqual(typeof(Order), newOrder.GetType());
     }
+
+    [TestMethod]
+    public void GetTitle_ReturnsOrderTitle_String()
+    {
+      string title = "7 Bread";
+      string description = "The vendor wants bread this time";
+      int price = 15;
+      string date = "january 12";
+      Order newOrder = new Order(title, description, price, date);
+      string result = newOrder.Title;
+      Assert.AreEqual(title, newOrder.Title);
+    }
   }
 }
-
-    
