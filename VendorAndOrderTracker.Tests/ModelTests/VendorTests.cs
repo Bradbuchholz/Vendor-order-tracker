@@ -38,6 +38,28 @@ namespace VendorAndOrderTracker.Tests
       Assert.AreEqual(1, result);
     }
 
+    [TestMethod]
+    public void OverloadConstructorDescription_ReturnsDescription_String()
+    {
+      string vendorName = "Vendor Name Here";
+      string vendorDescription = "A vendor that pierre sells to";
+      Vendor newVendor = new Vendor(vendorName, vendorDescription);
+      string result = newVendor.Description;
+      Assert.AreEqual(vendorDescription, result);
+    }
+
+    [TestMethod]
+    public void GetAll_ReturnsAllVendorObjects_VendorList()
+    {
+      string name1 = "Tester Vendor 1";
+      string name2 = "Tester Vendor 2";
+      Vendor newVendor1 = new Vendor(name1);
+      Vendor newVendor2 = new Vendor(name2);
+      List<Vendor> newList = new List<Vendor> { newVendor1, newVendor2 };
+      List<Vendor> result = Vendor.GetAll();
+      CollectionAssert.AreEqual(newList, result);
+    }
+    
   }
 }
 
