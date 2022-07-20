@@ -60,6 +60,16 @@ namespace VendorAndOrderTracker.Tests
       Assert.AreEqual(description, newOrder.Description);
     }
 
-    
+    [TestMethod]
+    public void GetDate_ReturnsOrderDate_String()
+    {
+      string title = "15 Bread";
+      string description = "The vendor wants bread at this time";
+      int price = 30;
+      string date = "March 12";
+      Order newOrder = new Order(title, description, price, date);
+      string result = newOrder.Date;
+      Assert.AreEqual(date, newOrder.Date);
+    }
   }
 }
