@@ -71,6 +71,5 @@ namespace VendorAndOrderTracker.Tests
       string result = newOrder.Date;
       Assert.AreEqual(date, newOrder.Date);
     }
-    
   }
 }
