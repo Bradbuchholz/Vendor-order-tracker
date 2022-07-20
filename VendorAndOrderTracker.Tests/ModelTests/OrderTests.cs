@@ -19,7 +19,7 @@ namespace VendorAndOrderTracker.Tests
       string title = "7 Bread";
       string description = "The vendor wants bread this time";
       int price = 15;
-      string date = "january 12";
+      string date = "March 12"; //my birthday! :)
       Order newOrder = new Order(title, description, price, date);
       Assert.AreEqual(typeof(Order), newOrder.GetType());
     }
