@@ -10,16 +10,16 @@ namespace VendorAndOrderTracker.Tests
   {
     public void Dispose()
     {
-      
+      Order.ClearAll();
     }
-    
+
     [TestMethod]
     public void OrderConstructor_CreatesAnOrderObject_Order()
     {
-      string title = "15 Bread";
-      string description = "The vendor wants bread at this time";
-      int price = 30;
-      string date = "March 12";
+      string title = "7 Bread";
+      string description = "The vendor wants bread this time";
+      int price = 15;
+      string date = "january 12";
       Order newOrder = new Order(title, description, price, date);
       Assert.AreEqual(typeof(Order), newOrder.GetType());
     }
@@ -27,9 +27,9 @@ namespace VendorAndOrderTracker.Tests
     [TestMethod]
     public void GetTitle_ReturnsOrderTitle_String()
     {
-      string title = "15 Bread";
-      string description = "The vendor wants bread at this time";
-      int price = 30;
+      string title = "7 Bread";
+      string description = "The vendor wants bread this time";
+      int price = 15;
       string date = "March 12";
       Order newOrder = new Order(title, description, price, date);
       string result = newOrder.Title;
@@ -39,9 +39,9 @@ namespace VendorAndOrderTracker.Tests
     [TestMethod]
     public void GetDescription_ReturnsOrderDescription_String()
     {
-      string title = "15 Bread";
-      string description = "The vendor wants bread at this time";
-      int price = 30;
+      string title = "7 Bread";
+      string description = "The vendor wants bread this time";
+      int price = 15;
       string date = "March 12";
       Order newOrder = new Order(title, description, price, date);
       string result = newOrder.Description;
@@ -51,21 +51,21 @@ namespace VendorAndOrderTracker.Tests
     [TestMethod]
     public void GetPrice_ReturnsOrderPrice_Int()
     {
-      string title = "15 Bread";
-      string description = "The vendor wants bread at this time";
-      int price = 30;
+      string title = "7 Bread";
+      string description = "The vendor wants bread this time";
+      int price = 15;
       string date = "March 12";
       Order newOrder = new Order(title, description, price, date);
-      string result = newOrder.Description;
-      Assert.AreEqual(description, newOrder.Description);
+      int result = newOrder.Price;
+      Assert.AreEqual(price, newOrder.Price);
     }
 
     [TestMethod]
     public void GetDate_ReturnsOrderDate_String()
     {
-      string title = "15 Bread";
-      string description = "The vendor wants bread at this time";
-      int price = 30;
+      string title = "7 Bread";
+      string description = "The vendor wants bread this time";
+      int price = 15;
       string date = "March 12";
       Order newOrder = new Order(title, description, price, date);
       string result = newOrder.Date;
@@ -78,6 +78,33 @@ namespace VendorAndOrderTracker.Tests
       List<Order> newList = new List<Order> { };
       List<Order> result = Order.GetAll();
       CollectionAssert.AreEqual(newList, result);
+    }
+
+    [TestMethod]
+    public void GetAll_ReturnsOrderList_OrderList()
+    {
+      Order newOrder1 = new Order("title", "description", 15, "date");
+      Order newOrder2 = new Order("title", "description", 18, "date");
+      List<Order> newList = new List<Order> { newOrder1, newOrder2 };
+      List<Order> result = Order.GetAll();
+      CollectionAssert.AreEqual(newList, result);
+    }
+
+    [TestMethod]
+    public void GetId_ReturnsOrderId_Int()
+    {
+      Order newOrder = new Order("title", "description", 15, "date");
+      int result = newOrder.Id;
+      Assert.AreEqual(1, result);
+    }
+
+    [TestMethod]
+    public void Find_ReturnsCorrectOrder_Order()
+    {
+      Order newOrder1 = new Order("title1", "description1", 15, "date1");
+      Order newOrder2 = new Order("title2", "description2", 18, "date2");
+      Order result = Order.Find(2);
+      Assert.AreEqual(newOrder2, result);
     }
   }
 }
